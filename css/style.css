@@ -1,0 +1,10 @@
+.frame_thumb {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
+#thumb_pasien {
+  max-width: 100%;
+  height: auto;
+}

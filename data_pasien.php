@@ -92,7 +92,7 @@
                         <div class="form-group">
                             <label for="foto_pasien" class="col-sm-2 control-label">Pas Foto</label>
                             <div class="col-sm-10">
-                                <input type="file" id="exampleInputFile" name="foto_pasien">
+                                <input type="file" id="foto_pasien" name="foto_pasien">
                                 <p class="help-block">Unggah Foto Pasien</p>
                             </div>
                         </div>
@@ -148,7 +148,10 @@
                     <td><?php echo $tampil['alamat_pasien'] ;?></td>
                     <td><?php echo $tampil['no_telp'] ;?></td>
                     <td><?php echo $tampil['status_pasien'] ;?></td>
-                    <td><img src = "images/"<?php echo $tampil['foto_pasien'];?></td>
+                    <td><div class="frame_thumb">
+                          <img src = "images/<?php echo $tampil['foto_pasien'];?>" id="thumb_pasien"/>
+                        </div>
+                    </td>
 
                     <td>
                         <a href="home.php?halaman=3&&id_pasien=<?php echo $tampil['id_pasien']; ?>">
