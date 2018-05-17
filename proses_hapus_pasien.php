@@ -3,15 +3,15 @@ include "include/koneksi.php";
 $id_pasien =$_GET['id_pasien'];
 
 $query ="SELECT * FROM data_pasien where id_pasien ='$id_pasien'";
-$hasil =mysql_query($query);
+$hasil =mysqli_query($koneksi, $query);
 
-if (mysql_num_rows($hasil) > 0 )
+if (mysqli_num_rows($hasil) > 0 )
 {
-    $data =mysql_fetch_array($hasil);
-    
+    $data =mysqli_fetch_array($hasil);
+
     //delete data di database
-    $query = mysql_query("DELETE FROM data_pasien where id_pasien='$id_pasien'");
-    
+    $query = mysqli_query($koneksi, "DELETE FROM data_pasien where id_pasien='$id_pasien'");
+
     if ($query)
     {
         ?>
@@ -21,9 +21,9 @@ if (mysql_num_rows($hasil) > 0 )
             </script>
         <?php
     }
-    
+
     else
-        
+
     {
         ?>
             <script language="javascript">
@@ -32,5 +32,5 @@ if (mysql_num_rows($hasil) > 0 )
             </script>
         <?php
     }
-} 
+}
 ?>
