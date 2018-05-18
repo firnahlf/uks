@@ -80,7 +80,7 @@
                                   <input type="radio" name="nama_tindakan" value="rawatrs"> Rawat RS
                                 </form>
 
-                                <label for="nama_obat" class="col-sm-2 control-label">Nama Tindakan</label>
+                                <label for="nama_obat" class="col-sm-2 control-label">Obat</label>
                                 <select name="nama_obat" id="id_obat" onchange="changeValue(this.value)" >
                                    <option value=0>-Pilih-</option>
                                      <?php
@@ -98,7 +98,7 @@
                                 document.getElementById('id_tindakan').addEventListener('click', displayTextField);
                                 function displayTextField() {
                                   // Get the value of the currently selected radio button. 'select-a-size' is the name of the radio buttons you specify in the form builder
-                                  var radioText = document.querySelector('input[name="nama_obat"]:checked').value;
+                                  var radioText = document.querySelector('input[name="Obat"]:checked').value;
                                   if (radioText == 'Obat') {
                                     document.getElementById('id_obat').style.display = 'block';
                                   } else {
