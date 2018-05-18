@@ -19,27 +19,20 @@
                     <form class="form-horizontal" action="proses_simpan_kunjungan.php" method="POST" enctype="multipart/form-data" name="form">
 
                       <div class="form-group">
-                          <label for="id_pasien" class="col-sm-2 control-label">Id Pasien</label>
+                          <label for="nama_pasien" class="col-sm-2 control-label">Nama Pasien</label>
                           <div class="col-sm-10">
-                         <select name="id_pasien" id="id_pasien" onchange="changeValue(this.value)" >
+                         <select name="nama_pasien" id="id_pasien" onchange="changeValue(this.value)" >
                             <option value=0>-Pilih-</option>
                               <?php
                               $result = mysqli_query($koneksi, "SELECT * FROM data_pasien");
                               while ($row = mysqli_fetch_array($result)) {
-                                echo '<option value="' . $row['id_pasien'] . '">' . $row['id_pasien'] . '</option>';
+                                echo '<option value="' . $row['id_pasien'] . '">' . $row['nama_pasien'] . '</option>';
 
                               }
                                 ?>
                               </select>
                             </div>
                           </div>
-
-                        <div class="form-group">
-                            <label for="nama_pasien" class="col-sm-2 control-label">Nama Pasien</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nama_pasien" placeholder="Nama Pasien">
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <label for="tgl_kunjungan" class="col-sm-2 control-label">Tanggal Kunjungan</label>
@@ -80,22 +73,40 @@
                       </div>
 
                       <div class="form-group">
-                            <label for="tindakan" class="col-sm-2 control-label">Tindakan</label>
                             <div class="col-sm-10">
-                              <select name="nama_tindakan" id="id_tindakan" onchange="changeValue(this.value)" >
-                                 <option value=0>-Pilih-</option>
-                                   <?php
-                                   $result = mysqli_query($koneksi, "SELECT * FROM data_tindakan");
-                                   while ($row = mysqli_fetch_array($result)) {
-                                     echo '<option value="' . $row['nama_tindakan'] . '">' . $row['nama_tindakan'] . '</option>';
+                                <form>
+                                  <input type="radio" name="nama_tindakan" value="rawatuks" > Rawat UKS
+                                  <input type="radio" name="nama_tindakan" value="obat" > Obat
+                                  <input type="radio" name="nama_tindakan" value="rawatrs"> Rawat RS
+                                </form>
 
-                                   }
-                                     ?>
+                                <label for="nama_obat" class="col-sm-2 control-label">Nama Tindakan</label>
+                                <select name="nama_obat" id="id_obat" onchange="changeValue(this.value)" >
+                                   <option value=0>-Pilih-</option>
+                                     <?php
+                                     $result = mysqli_query($koneksi, "SELECT * FROM data_obat");
+                                     while ($row = mysqli_fetch_array($result)) {
+                                       echo '<option value="' . $row['id_obat'] . '">' . $row['nama_obat'] . '</option>';
+
+                                     }
+                                       ?>
                                      </select>
 
-                                      <button class="add_field_button">Pilih Tindakan Lain</button>
+                                <script language="javascript" type="text/javascript">
+                                // Hide the Text field by default
+                                document.getElementById('id_obat').style.display = 'none';
+                                document.getElementById('id_tindakan').addEventListener('click', displayTextField);
+                                function displayTextField() {
+                                  // Get the value of the currently selected radio button. 'select-a-size' is the name of the radio buttons you specify in the form builder
+                                  var radioText = document.querySelector('input[name="nama_obat"]:checked').value;
+                                  if (radioText == 'Obat') {
+                                    document.getElementById('id_obat').style.display = 'block';
+                                  } else {
+                                    document.getElementById('id_obat').style.display = 'none';
+                                  }
+                                }
+                              </script>
 
-                                      
 
                               </div>
                         </div>
