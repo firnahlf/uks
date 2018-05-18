@@ -20,12 +20,14 @@ $tmp = $_FILES ['foto_pasien']['tmp_name'];
     if(move_uploaded_file($tmp, $path)){
 
     $query = mysqli_query($koneksi, "INSERT INTO data_pasien (id_pasien, nama_pasien, tempat_lahir_pasien, tgl_lahir_pasien, alamat_pasien, agama_pasien, jk_pasien, no_telp, status_pasien, foto_pasien)
-    VALUES('id_pasien','$nama_pasien','$tempat_lahir_pasien','$tgl_lahir_pasien','$alamat_pasien','$agama_pasien','$jk_pasien','$no_telp','$status_pasien', '$foto_pasien')");
+    VALUES('id_pasien','$nama_pasien','$tempat_lahir_pasien','$tgl_lahir_pasien','$alamat_pasien','$agama_pasien','$jk_pasien','$no_telp','$status_pasien', '$fotobaru')");
 
     if($query)
     {
         ?>
-            <script language="javascript">document.location.href="home.php?halaman=2"; alert("Data pasien baru berhasil disimpan!");
+            <script language="javascript">
+              alert("Data pasien baru berhasil disimpan!");
+              document.location.href="home.php?halaman=2";
             </script>
         <?php
     }
@@ -34,7 +36,9 @@ $tmp = $_FILES ['foto_pasien']['tmp_name'];
 
     {
         ?>
-            <script language="javascript">document.location.href="home.php?halaman=2"; alert("Data pasien baru gagal disimpan!");
+            <script language="javascript">
+              alert("Data pasien baru gagal disimpan!");
+              document.location.href="home.php?halaman=2";
             </script>
         <?php
     }
