@@ -82,22 +82,39 @@
                       <div class="form-group">
                             <label for="tindakan" class="col-sm-2 control-label">Tindakan</label>
                             <div class="col-sm-10">
-                              <select name="nama_tindakan" id="id_tindakan" onchange="changeValue(this.value)" >
-                                 <option value=0>-Pilih-</option>
-                                   <?php
-                                   $result = mysqli_query($koneksi, "SELECT * FROM data_tindakan");
-                                   while ($row = mysqli_fetch_array($result)) {
-                                     echo '<option value="' . $row['nama_tindakan'] . '">' . $row['nama_tindakan'] . '</option>';
-
-                                   }
-                                     ?>
-                                     </select>
-
-                                      <button class="add_field_button">Pilih Tindakan Lain</button>
-
-                                      
-
+                              <div id="pilih_tindakan">
+                                <input type="radio" name="nama_tindakan" value="obat"> Obat
+                                <input type="radio" name="nama_tindakan" value="rawat_inap"> Rawat Inap <br>
                               </div>
+
+                              <select name="nama_tindakan" id="pilih_obat" onchange="changeValue(this.value)" >
+                                <option value=0>-Pilih-</option>
+                                  <?php
+                                    $result = mysqli_query($koneksi, "SELECT * FROM data_tindakan");
+                                    while ($row = mysqli_fetch_array($result)) {
+                                      echo '<option value="' . $row['nama_tindakan'] . '">' . $row['nama_tindakan'] . '</option>';
+
+                                    }
+                                  ?>
+                              </select>
+
+                              <script type="text/javascript">
+                                document.getElementById("pilih_obat").style.display='none';
+                                document.getElementById("pilih_tindakan").addEventListener('click', displayListObat);
+                                function displayListObat() {
+                                  var radioText = document.querySelector('input[name="nama_tindakan"]:checked').value;
+                                  if (radioText == 'obat') {
+                                    document.getElementById("pilih_obat").style.display='inline';
+                                  } else {
+                                    document.getElementById("pilih_obat").style.display='none';
+                                  }
+                                }
+
+                              </script>
+
+                              <button class="add_field_button">Pilih Tindakan Lain</button>
+
+                            </div>
                         </div>
                     </div>
 

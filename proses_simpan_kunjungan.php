@@ -17,8 +17,9 @@ $tindakan = $_POST['tindakan'];
 
 if($nama_pasien =="" or $tgl_kunjungan ==""){
     ?>
-        <script language="javascript">document.location.href="home.php?halaman=18";
+        <script language="javascript">
             alert("Masih ada form yang kosong!");
+            document.location.href="home.php?halaman=18";
         </script>
     <?php
 
@@ -33,7 +34,9 @@ else
     if($query)
     {
         ?>
-            <script language="javascript">document.location.href="home.php?halaman=18"; alert("Data pasien baru berhasil disimpan!");
+            <script language="javascript">
+              alert("Data pasien baru berhasil disimpan!");
+              document.location.href="home.php?halaman=18";
             </script>
         <?php
     }
@@ -42,7 +45,9 @@ else
 
     {
         ?>
-            <script language="javascript">document.location.href="home.php?halaman=18"; alert("Data pasien baru gagal disimpan!");
+            <script language="javascript">
+              alert("Data pasien baru gagal disimpan!");
+              document.location.href="home.php?halaman=18";
             </script>
         <?php
     }
