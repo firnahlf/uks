@@ -8,6 +8,7 @@ if(isset($_SESSION['username'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +16,8 @@ if(isset($_SESSION['username'])){
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
+        <script src="chart/Chart.js"></script>
+
         <title>Sistem Informasi Rekam Medis UKS SMPN 4 Kota Tangerang Selatan</title>
 
         <!-- Bootstrap core CSS -->
@@ -49,6 +52,7 @@ if(isset($_SESSION['username'])){
                     <a class="navbar-brand" href="home.php">UKS 4 Tangsel</a>
                 </div>
 
+
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="home.php">Home</a></li>
@@ -56,7 +60,6 @@ if(isset($_SESSION['username'])){
                         <li><a href="home.php?halaman=2">Pasien</a></li>
                         <li><a href="home.php?halaman=18">Kunjungan</a></li>
                         <li><a href="home.php?halaman=6">Obat</a></li>
-                        <li><a href="home.php?halaman=10">Tindakan</a></li>
                         <li><a href="home.php?halaman=14">Penjaringan</a></li>
                         <li><a href="home.php?halaman=15">Petugas</a></li>
                         <li><a href="home.php?halaman=23">Rekam Medis</a></li>
@@ -71,6 +74,7 @@ if(isset($_SESSION['username'])){
             </div>
         </nav>
         <div class="container">
+
 
             <!-- hlaman unutk menampilkan data utama seperti pasien dokter pengunjung dan lain lain -->
 
@@ -126,22 +130,6 @@ if(isset($_SESSION['username'])){
 
         case '9':
             require ("detail_obat.php");
-            break;
-
-        case '10':
-            require ("data_tindakan.php");
-            break;
-
-        case '11':
-            require ("edit_data_tindakan.php");
-            break;
-
-        case '12':
-            require ("proses_hapus_tindakan.php");
-            break;
-
-        case '13':
-            require ("proses_edit_tindakan.php");
             break;
 
         case '14':

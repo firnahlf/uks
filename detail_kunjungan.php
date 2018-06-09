@@ -9,11 +9,13 @@ $tampilkan = mysqli_fetch_array($query);
 
 //tampung data ke dalam variabel
 
-$nama_pasien = $tampilkan['nama_pasien'];
+$id_kunjungan = $tampilkan['id_kunjungan']
+$id_pasien = $tampilkan['id_pasien']
 $tgl_kunjungan = $tampilkan['tgl_kunjungan'];
 $status_pasien = $tampilkan['status_pasien'];
 $jk_pasien = $tampilkan['jk_pasien'];
-$keluhan_pasien = $tampilkan['keluhan_pasien'];
+$keluhan = $tampilkan['keluhan'];
+$tindakan = $tampilkan['tindakan'];
 
 ?>
 <div class="panel panel-primary">

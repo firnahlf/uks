@@ -73,44 +73,44 @@
                       </div>
 
                       <div class="form-group">
+                        <label for="keluhan" class="col-sm-2 control-label">Tindakan</label>
                             <div class="col-sm-10">
-                                <form>
-                                  <input type="radio" name="nama_tindakan" value="rawatuks" > Rawat UKS
-                                  <input type="radio" name="nama_tindakan" value="obat" > Obat
-                                  <input type="radio" name="nama_tindakan" value="rawatrs"> Rawat RS
-                                </form>
 
-                                <label for="nama_obat" class="col-sm-2 control-label">Obat</label>
-                                <select name="nama_obat" id="id_obat" onchange="changeValue(this.value)" >
-                                   <option value=0>-Pilih-</option>
-                                     <?php
-                                     $result = mysqli_query($koneksi, "SELECT * FROM data_obat");
-                                     while ($row = mysqli_fetch_array($result)) {
-                                       echo '<option value="' . $row['id_obat'] . '">' . $row['nama_obat'] . '</option>';
+                              <div id="pilih_tindakan">
+                                <input type="radio" name="nama_tindakan" value="obat"> Obat
+                                <input type="radio" name="nama_tindakan" value="rawat_inap"> Rawat Inap
+                                <input type="radio" name="nama_tindakan" value="rawat_inap"> Rawat Uks <br>
+                              </div>
 
-                                     }
-                                       ?>
-                                     </select>
+                              <select name="nama_tindakan" id="pilih_obat" onchange="changeValue(this.value)" >
+                                <option value=0>-Pilih-</option>
+                                  <?php
+                                    $result = mysqli_query($koneksi, "SELECT * FROM data_obat");
+                                    while ($row = mysqli_fetch_array($result)) {
+                                      echo '<option value="' . $row['id_obat'] . '">' . $row['nama_obat'] . '</option>';
 
-                                <script language="javascript" type="text/javascript">
-                                // Hide the Text field by default
-                                document.getElementById('id_obat').style.display = 'none';
-                                document.getElementById('id_tindakan').addEventListener('click', displayTextField);
-                                function displayTextField() {
-                                  // Get the value of the currently selected radio button. 'select-a-size' is the name of the radio buttons you specify in the form builder
-                                  var radioText = document.querySelector('input[name="Obat"]:checked').value;
-                                  if (radioText == 'Obat') {
-                                    document.getElementById('id_obat').style.display = 'block';
+                                    }
+                                  ?>
+                              </select>
+
+                              <script type="text/javascript">
+                                document.getElementById("pilih_obat").style.display='none';
+                                document.getElementById("pilih_tindakan").addEventListener('click', displayListObat);
+                                function displayListObat() {
+                                  var radioText = document.querySelector('input[name="nama_tindakan"]:checked').value;
+                                  if (radioText == 'obat') {
+                                    document.getElementById("pilih_obat").style.display='inline';
                                   } else {
-                                    document.getElementById('id_obat').style.display = 'none';
+                                    document.getElementById("pilih_obat").style.display='none';
                                   }
                                 }
+
                               </script>
 
 
-                              </div>
-                        </div>
-                    </div>
+                          </div>
+                      </div>
+                  </div>
 
 
                     <div class="modal-footer">
@@ -142,8 +142,6 @@
                 <tbody>
                     <td>ID Kunjungan</td>
                     <td>ID Pasien</td>
-                    <td>ID Rekam Medis</td>
-                    <td>Nama Pasien</td>
                     <td>Tanggal Kunjungan</td>
                     <td>Status</td>
                     <td>Jenis Kelamin</td>
@@ -161,12 +159,10 @@
                 <tbody>
                     <td><?php echo $tampil['id_kunjungan'] ; ?></td>
                     <td><?php echo $tampil['id_pasien'] ; ?></td>
-                    <td><?php echo $tampil['id_rm'] ; ?></td>
-                    <td><?php echo $tampil['nama_pasien']; ?></td>
                     <td><?php echo $tampil['tgl_kunjungan'] ;?></td>
                     <td><?php echo $tampil['status_pasien'] ;?></td>
                     <td><?php echo $tampil['jk_pasien'] ;?></td>
-                    <td><?php echo $tampil['keluhan_pasien'] ;?></td>
+                    <td><?php echo $tampil['keluhan'] ;?></td>
                     <td><?php echo $tampil['tindakan'] ;?></td>
 
 

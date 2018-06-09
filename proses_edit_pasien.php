@@ -14,6 +14,7 @@ $jk_pasien = $_POST['jk_pasien'];
 $no_telp = $_POST['no_telp'];
 $status_pasien = $_POST['status_pasien'];
 
+
 $query = mysqli_query($koneksi, "UPDATE data_pasien SET
 						nama_pasien = '$nama_pasien',
 						tempat_lahir_pasien = '$tempat_lahir_pasien',

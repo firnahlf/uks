@@ -2,8 +2,8 @@
 include 'include/koneksi.php';
 
 $id_obat = $_GET['id_obat'];
-$query = mysql_query("SELECT * FROM data_obat WHERE id_obat ='$id_obat'");
-$tampil = mysql_fetch_array($query);
+$query = mysqli_query($koneksi, "SELECT * FROM data_obat WHERE id_obat ='$id_obat'");
+$tampil = mysqli_fetch_array($query);
 ?>
 
 
@@ -13,7 +13,7 @@ $tampil = mysql_fetch_array($query);
     <div class="panel-heading">Edit Data</div>
     <div class="panel-body">
         <form class="form-horizontal" action="proses_edit_obat.php" method="POST" enctype="multipart/form-data" name="form">
-            
+
             <div class="form-group">
                 <label for="id_obat" class="col-sm-2 control-label">ID Obat</label>
                 <div class="col-sm-10">
@@ -21,7 +21,7 @@ $tampil = mysql_fetch_array($query);
                     <input class="form-control" name="id_obat" type="hidden" value="<?php echo $tampil['id_obat'] ;?>">
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label for="nama_obat" class="col-sm-2 control-label">Nama Obat</label>
                 <div class="col-sm-10">
@@ -48,7 +48,7 @@ $tampil = mysql_fetch_array($query);
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="detail_obat" value="<?php echo $tampil['detail_obat'] ;?>">
                 </div>
-            </div>                        
+            </div>
             </div>
     </div>
 </div>

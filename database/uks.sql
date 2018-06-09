@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 17, 2018 at 11:10 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- Host: 127.0.0.1
+-- Generation Time: Jun 09, 2018 at 07:51 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.1.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,12 +32,18 @@ CREATE TABLE `data_kunjungan` (
   `id_kunjungan` int(50) NOT NULL,
   `id_pasien` int(50) NOT NULL,
   `tgl_kunjungan` varchar(50) NOT NULL,
-  `nama_pasien` varchar(50) NOT NULL,
   `status_pasien` varchar(50) NOT NULL,
   `jk_pasien` varchar(50) NOT NULL,
   `keluhan` varchar(50) NOT NULL,
   `tindakan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_kunjungan`
+--
+
+INSERT INTO `data_kunjungan` (`id_kunjungan`, `id_pasien`, `tgl_kunjungan`, `status_pasien`, `jk_pasien`, `keluhan`, `tindakan`) VALUES
+(1, 0, '2018-05-08', '', '', '', 'tindakan');
 
 -- --------------------------------------------------------
 
@@ -123,6 +129,18 @@ INSERT INTO `data_penjaringan` (`id_pasien`, `id_penjaringan`, `berat_badan`, `t
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `grafik`
+--
+
+CREATE TABLE `grafik` (
+  `id` int(60) NOT NULL,
+  `tahun` int(70) NOT NULL,
+  `jml_obat` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login`
 --
 
@@ -171,6 +189,12 @@ ALTER TABLE `data_penjaringan`
   ADD PRIMARY KEY (`id_penjaringan`);
 
 --
+-- Indexes for table `grafik`
+--
+ALTER TABLE `grafik`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
@@ -184,7 +208,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `data_kunjungan`
 --
 ALTER TABLE `data_kunjungan`
-  MODIFY `id_kunjungan` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kunjungan` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `data_obat`
@@ -203,6 +227,12 @@ ALTER TABLE `data_pasien`
 --
 ALTER TABLE `data_penjaringan`
   MODIFY `id_penjaringan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `grafik`
+--
+ALTER TABLE `grafik`
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `login`
