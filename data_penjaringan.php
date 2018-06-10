@@ -185,7 +185,11 @@
 
                 <?php
                 include "include/koneksi.php";
-                $baca = mysqli_query($koneksi, "SELECT * FROM data_penjaringan");
+                $baca = mysqli_query($koneksi, "SELECT data_penjaringan.*
+                                                , data_pasien.*
+                                                , data_pasien.nama_pasien AS penj_namapasien
+                                                FROM data_penjaringan
+                                                JOIN data_pasien ON data_pasien.id_pasien=data_penjaringan.id_pasien");
                 while( $tampil = mysqli_fetch_array($baca))
                 {
                 ?>
@@ -193,7 +197,7 @@
                 <tbody>
                     <td><?php echo $tampil['id_pasien'] ; ?></td>
                     <td><?php echo $tampil['id_penjaringan']; ?></td>
-                    <td><?php echo $tampil['nama_pasien']; ?></td>
+                    <td><?php echo $tampil['penj_namapasien']; ?></td>
                     <td><?php echo $tampil['berat_badan'] ;?></td>
                     <td><?php echo $tampil['tinggi_badan']; ?></td>
                     <td><?php echo $tampil['td_sistole']; ?></td>

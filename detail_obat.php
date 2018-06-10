@@ -3,9 +3,9 @@ include "include/koneksi.php";
 
 $id_obat = $_GET['id_obat'];
 
-$query = mysql_query("SELECT * FROM data_obat WHERE id_obat = '$id_obat'");
+$query = mysqli_query($koneksi, "SELECT * FROM data_obat WHERE id_obat = '$id_obat'");
 
-$tampilkan = mysql_fetch_array($query);
+$tampilkan = mysqli_fetch_array($query);
 
 //tampung data ke dalam variabel
 
@@ -20,7 +20,7 @@ $detail_obat = $tampilkan['detail_obat'];
   <div class="panel-heading">Detail Obat <b><?php echo $nama_obat ; ?></b></div>
 
     <div class="panel-body">
-	
+
 	<div class="row">
         <div class="col-md-4">
 			<?php
@@ -29,16 +29,16 @@ $detail_obat = $tampilkan['detail_obat'];
                 {
                     echo "<img src='img/nopic.gif' width='300' height='600' class ='img-thumbnail'>";
                 }
-                
+
                 else
-                
+
                 {
                     echo "<img src='img/$tampil[foto]' alt='$tampil[nm_pasien]' class='img-thumbnail' width ='300' height ='600'>";
                 }
                 */
             ?>
 	  	</div>
-	  
+
 	  	<div class="col-md-4">
 	  		<table border="0" height ="400">
 	  			<tr>
