@@ -9,8 +9,8 @@ $tampilkan = mysqli_fetch_array($query);
 
 //tampung data ke dalam variabel
 
-$id_kunjungan = $tampilkan['id_kunjungan']
-$id_pasien = $tampilkan['id_pasien']
+$id_kunjungan = $tampilkan['id_kunjungan'];
+$id_pasien = $tampilkan['id_pasien'];
 $tgl_kunjungan = $tampilkan['tgl_kunjungan'];
 $status_pasien = $tampilkan['status_pasien'];
 $jk_pasien = $tampilkan['jk_pasien'];

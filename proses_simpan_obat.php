@@ -23,24 +23,28 @@ if($nama_obat =="" or $jml_obat =="" or $satuan_obat =="")
 
 else
 
-{    
-    $query = mysql_query("INSERT INTO data_obat (id_obat, nama_obat, jml_obat, satuan_obat)
-    
+{
+    $query = mysqli_query($koneksi, "INSERT INTO data_obat (id_obat, nama_obat, jml_obat, satuan_obat)
+
     VALUES(id_obat,'$nama_obat','$jml_obat','$satuan_obat')");
-    
+
     if($query)
     {
         ?>
-            <script language="javascript">document.location.href="home.php?halaman=6"; alert("Data obat baru berhasil disimpan!");
+            <script language="javascript">
+            alert("Data obat baru berhasil disimpan!");
+            document.location.href="home.php?halaman=6";
             </script>
         <?php
     }
-    
+
     else
-    
+
     {
         ?>
-            <script language="javascript">document.location.href="home.php?halaman=6"; alert("Data obat baru gagal disimpan!");
+            <script language="javascript">
+            alert("Data obat baru gagal disimpan!");
+            document.location.href="home.php?halaman=6";
             </script>
         <?php
     }

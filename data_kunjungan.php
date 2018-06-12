@@ -14,14 +14,13 @@
                 </div>
 
                 <div class="modal-body">
-
                     <!-- menampilkan form input -->
                     <form class="form-horizontal" action="proses_simpan_kunjungan.php" method="POST" enctype="multipart/form-data" name="form">
 
                       <div class="form-group">
                           <label for="nama_pasien" class="col-sm-2 control-label">Nama Pasien</label>
                           <div class="col-sm-10">
-                         <select name="nama_pasien" id="id_pasien" onchange="changeValue(this.value)" >
+                         <select name="id_pasien" id="id_pasien" onchange="changeValue(this.value)" >
                             <option value=0>-Pilih-</option>
                               <?php
                               $result = mysqli_query($koneksi, "SELECT * FROM data_pasien");
@@ -44,7 +43,7 @@
                         <div class="form-group">
                             <label for="status_pasien" class="col-sm-2 control-label">Status</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="Status Pasien">
+                                <select class="form-control" name="status_pasien">
                                     <option value="">-- pilih status --</option>
                                     <option value="Peserta Didik">Peserta Didik</option>
                                     <option value="Guru">Guru</option>
@@ -57,7 +56,7 @@
                         <div class="form-group">
                             <label for="jk_pasien" class="col-sm-2 control-label">Jenis Kelamin</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="Jenis Kelamin">
+                                <select class="form-control" name="jk_pasien">
                                     <option value="">-- pilih jenis kelamin --</option>
                                     <option value="Pria">Pria</option>
                                     <option value="Wanita">Wanita</option>
@@ -68,56 +67,48 @@
                         <div class="form-group">
                               <label for="keluhan" class="col-sm-2 control-label">Keluhan</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="Keluhan Pasien" placeholder="Keluhan pasien">
+                                  <input type="text" class="form-control" name="keluhan" placeholder="Keluhan pasien">
                           </div>
                       </div>
 
                       <div class="form-group">
-                        <label for="keluhan" class="col-sm-2 control-label">Tindakan</label>
+                        <label for="pilih_tindakan" class="col-sm-2 control-label">Tindakan</label>
                             <div class="col-sm-10">
-
-                              <div id="pilih_tindakan">
-                                <input type="radio" name="nama_tindakan" value="obat"> Obat
-                                <input type="radio" name="nama_tindakan" value="rawat_inap"> Rawat Inap
-                                <input type="radio" name="nama_tindakan" value="rawat_inap"> Rawat Uks <br>
-                              </div>
-
-                              <select name="nama_tindakan" id="pilih_obat" onchange="changeValue(this.value)" >
-                                <option value=0>-Pilih-</option>
+                                <select class="form-control" name="tindakan" id="pilih_obat">
+                                  <option value=0>-Pilih-</option>
                                   <?php
-                                    $result = mysqli_query($koneksi, "SELECT * FROM data_obat");
-                                    while ($row = mysqli_fetch_array($result)) {
-                                      echo '<option value="' . $row['id_obat'] . '">' . $row['nama_obat'] . '</option>';
-
-                                    }
+                                  $result = mysqli_query($koneksi, "SELECT * FROM data_obat");
+                                  while ($row = mysqli_fetch_array($result)) {
+                                    echo '<option value="' . $row['id_obat'] . '">' . $row['nama_obat'] . '</option>';
+                                  }
                                   ?>
                               </select>
+                              <div id="pilih_tindakan">
+                                <input type="radio" name="tindakan" value="obat"> Obat
+                                <input type="radio" name="tindakan" value="rawat_inap"> Rawat Inap
+                                <input type="radio" name="tindakan" value="rawat_uks"> Rawat Uks <br>
+                              </div>
 
                               <script type="text/javascript">
                                 document.getElementById("pilih_obat").style.display='none';
                                 document.getElementById("pilih_tindakan").addEventListener('click', displayListObat);
                                 function displayListObat() {
-                                  var radioText = document.querySelector('input[name="nama_tindakan"]:checked').value;
+                                  var radioText = document.querySelector('input[name="tindakan"]:checked').value;
                                   if (radioText == 'obat') {
                                     document.getElementById("pilih_obat").style.display='inline';
                                   } else {
                                     document.getElementById("pilih_obat").style.display='none';
                                   }
                                 }
-
                               </script>
-
-
                           </div>
                       </div>
-                  </div>
-
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        <button type="submit" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                    </div>
+                      <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary">Simpan</button>
+                          <button type="submit" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                      </div>
                     </form>
+                </div>
             </div>
         </div>
     </div>
@@ -142,6 +133,7 @@
                 <tbody>
                     <td>ID Kunjungan</td>
                     <td>ID Pasien</td>
+                    <td>Nama Pasien</td>
                     <td>Tanggal Kunjungan</td>
                     <td>Status</td>
                     <td>Jenis Kelamin</td>
@@ -151,7 +143,11 @@
 
                 <?php
                 include "include/koneksi.php";
-                $baca = mysqli_query($koneksi, "SELECT * FROM data_kunjungan");
+                $baca = mysqli_query($koneksi, "SELECT data_kunjungan.*
+                                                , data_pasien.*
+                                                , data_pasien.nama_pasien as kunj_namapasien
+                                                FROM data_kunjungan
+                                                JOIN data_pasien ON data_pasien.id_pasien=data_kunjungan.id_pasien");
                 while( $tampil = mysqli_fetch_array($baca))
                 {
                 ?>
@@ -159,6 +155,7 @@
                 <tbody>
                     <td><?php echo $tampil['id_kunjungan'] ; ?></td>
                     <td><?php echo $tampil['id_pasien'] ; ?></td>
+                    <td><?php echo $tampil['kunj_namapasien'] ; ?></td>
                     <td><?php echo $tampil['tgl_kunjungan'] ;?></td>
                     <td><?php echo $tampil['status_pasien'] ;?></td>
                     <td><?php echo $tampil['jk_pasien'] ;?></td>
